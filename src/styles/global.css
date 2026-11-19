@@ -1,141 +1,470 @@
+
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+  A Little Universe for Malar
+  Global typography: AnnotationM NF
+*/
+
+@font-face {
+  font-family: "AnnotationM NF";
+  src: url("/fonts/AnnotationMNF.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+  color-scheme: light;
+
+  --background: #faf8f5;
+  --background-soft: #f4efeb;
+  --surface: #fffdfb;
+
+  --accent: #b17e79;
+  --accent-dark: #91615d;
+  --accent-light: #ead8d4;
+
+  --text: #514744;
+  --text-dark: #302725;
+  --text-muted: #8c7d78;
+
+  --border: #e9e1dc;
+
+  --box-shadow:
+    0 2px 8px rgba(75, 52, 46, 0.04),
+    0 12px 32px rgba(75, 52, 46, 0.06);
+
+  --font-body: "AnnotationM NF", cursive;
+  --font-heading: "AnnotationM NF", cursive;
+  --font-handwritten: "AnnotationM NF", cursive;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "AnnotationM NF", cursive !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
 body {
-	font-family: var(--font-atkinson);
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.8;
+  text-align: left;
+  color: var(--text);
+  background: var(--background);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
+
+/* Layout */
+
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+  width: 760px;
+  max-width: calc(100% - 2em);
+  margin: 0 auto;
+  padding: 3.5em 1em;
 }
+
+/* Typography */
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+  margin: 0 0 0.65rem;
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-weight: normal;
+  line-height: 1.35;
+  letter-spacing: 0;
 }
 
+h1 {
+  font-size: clamp(2.5rem, 6vw, 3.8rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+h3 {
+  font-size: 1.9rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.05rem;
+}
+
+strong,
+b {
+  color: var(--text-dark);
+  font-weight: normal;
+}
+
+p {
+  margin: 0 0 1.4em;
+}
+
+.prose p {
+  margin-bottom: 1.8em;
+}
+
+/* Links */
+
+a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Buttons and interactive elements */
+
+button,
+input,
+textarea,
+select {
+  font-family: "AnnotationM NF", cursive !important;
+  font-size: inherit;
+}
+
+/* Media */
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+figure {
+  margin: 2em 0;
+}
+
+figcaption {
+  margin-top: 0.7em;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Lists */
+
+ul,
+ol {
+  padding-left: 1.5em;
+  margin: 0 0 1.5em;
+}
+
+li {
+  padding-left: 0.3em;
+  margin-bottom: 0.4em;
+}
+
+li::marker {
+  color: var(--accent);
+}
+
+/* Quotes */
+
+blockquote {
+  margin: 2em 0;
+  padding: 0.5em 0 0.5em 1.4em;
+  border-left: 2px solid var(--accent-light);
+  color: var(--text-muted);
+  font-family: var(--font-handwritten);
+  font-size: 1.25em;
+  font-style: normal;
+  line-height: 1.8;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code */
+
+code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--background-soft);
+  color: var(--accent-dark);
+  font-size: 0.88em;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 1.5em;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--box-shadow);
+}
+
+pre > code {
+  all: unset;
+}
+
+/* Forms */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.8em 1em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-dark);
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Tables */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95em;
+}
+
+th,
+td {
+  padding: 0.8em;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+th {
+  color: var(--text-dark);
+  font-weight: normal;
+}
+
+/* Dividers */
+
+hr {
+  height: 1px;
+  margin: 2.5em 0;
+  border: 0;
+  background: var(--border);
+}
+
+/* Selection */
+
+::selection {
+  color: var(--text-dark);
+  background: var(--accent-light);
+}
+
+/* Screen-reader-only content */
+
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+
+  main {
+    max-width: calc(100% - 1.5em);
+    padding: 2em 0.5em;
+  }
+
+  blockquote {
+    font-size: 1.1em;
+  }
+
+  pre {
+    padding: 1em;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* First blog post interactions */
+
+.welcome {
+  padding: 2.5rem 1.5rem;
+  margin: 1rem 0 2rem;
+  text-align: center;
+  background: var(--background-soft);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+
+.eyebrow {
+  color: var(--accent-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+}
+
+.welcome h2 {
+  margin: 1rem 0;
+  font-size: 2.8rem;
+}
+
+.welcome-text {
+  max-width: 500px;
+  margin: auto;
+  font-size: 1.15rem;
+}
+
+.tiny-note {
+  margin-top: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.little-button {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--accent-light);
+  border-radius: 30px;
+  background: var(--surface);
+  color: var(--accent-dark);
+  cursor: pointer;
+  font: inherit;
+  transition: all 0.2s ease;
+}
+
+.little-button:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.surprise {
+  display: none;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border-radius: 12px;
+  background: var(--background-soft);
+  text-align: center;
+}
+
+.surprise:target {
+  display: block;
+  animation: appear 0.5s ease;
+}
+
+.memory-card {
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.memory-card summary {
+  color: var(--accent-dark);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.memory-card p {
+  margin: 1rem 0 0;
+}
+
+.question {
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 14px;
+  background: var(--background-soft);
+  text-align: center;
+}
+
+.question a {
+  display: inline-block;
+  margin: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--accent-light);
+  border-radius: 24px;
+}
+
+.final-note {
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.final-note h2 {
+  font-size: 2.2rem;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

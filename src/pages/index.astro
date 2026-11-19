@@ -1,3 +1,4 @@
+
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
@@ -9,51 +10,433 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<meta name="theme-color" content="#faf8f5" />
 	</head>
+
 	<body>
 		<Header />
+
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to
-				build a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your{' '}
-				<code>astro.config.mjs</code> file. You can customize your setup with{' '}
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like
-				Tailwind, React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>
-					Edit this page in <code>src/pages/index.astro</code>
-				</li>
-				<li>
-					Edit the site header items in <code>src/components/Header.astro</code>
-				</li>
-				<li>
-					Add your name to the footer in <code>src/components/Footer.astro</code>
-				</li>
-				<li>
-					Check out the included blog posts in <code>src/content/blog/</code>
-				</li>
-				<li>
-					Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code>
-				</li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to{' '}
-				<a href="https://docs.astro.build/">read the docs</a> or{' '}
-				<a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out{' '}
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a> by{' '}
-				<a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<!-- Hero Section -->
+			<section class="hero">
+				<div class="hero-content">
+					<span class="eyebrow">A LITTLE UNIVERSE OF ITS OWN</span>
+
+					<h1>
+						For Malar,
+						<br />
+						<span>with all my heart.</span>
+					</h1>
+
+					<div class="ornament">
+						<span></span>
+						♥
+						<span></span>
+					</div>
+
+					<p class="intro">
+						Some things are too beautiful to leave unwritten.
+						Some thoughts deserve a place of their own.
+						And some people make an entire universe feel a little
+						more meaningful.
+					</p>
+
+					<p class="welcome">
+						Welcome to your little corner of the universe.
+					</p>
+
+					<a href="/blog" class="explore-button">
+						Explore the journal <span>↗</span>
+					</a>
+				</div>
+
+				<div class="hero-bottom">
+					<span>MADE OF THOUGHTS & FEELINGS</span>
+					<span>EST. 2026</span>
+				</div>
+			</section>
+
+			<!-- Introduction -->
+			<section class="introduction">
+				<div class="section-label">01 — A NOTE BEFORE YOU BEGIN</div>
+
+				<div class="introduction-content">
+					<h2>
+						A place where
+						<br />
+						<span>words find a home.</span>
+					</h2>
+
+					<div class="note">
+						<p>
+							Not everything needs to be said aloud.
+							Some feelings live quietly between the lines,
+							in little memories, passing thoughts, and
+							words that we sometimes struggle to express.
+						</p>
+
+						<p>
+							This little space is for all of that.
+							For stories, reflections, random thoughts,
+							and everything in between.
+						</p>
+
+						<p class="signature">
+							With love, always.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Journal Section -->
+			<section class="journal">
+				<div class="section-label">02 — THE JOURNAL</div>
+
+				<div class="journal-heading">
+					<div>
+						<h2>Little things, <span>beautifully told.</span></h2>
+						<p>A collection of thoughts, stories and moments.</p>
+					</div>
+
+					<a href="/blog" class="view-all">View all entries ↗</a>
+				</div>
+
+				<div class="journal-card">
+					<div class="card-number">A PLACE FOR EVERYTHING</div>
+					<h3>Every story begins somewhere.</h3>
+					<p>
+						Perhaps with a thought, a memory, a feeling,
+						or something that happened on an ordinary day.
+					</p>
+					<a href="/blog">Step into the journal →</a>
+				</div>
+			</section>
+
+			<!-- Closing -->
+			<section class="closing">
+				<div class="closing-heart">♡</div>
+				<h2>
+					And so,
+					<br />
+					<span>the universe begins.</span>
+				</h2>
+				<p>One page, one thought, one little moment at a time.</p>
+			</section>
 		</main>
+
 		<Footer />
 	</body>
 </html>
+
+<style>
+	:global(html) {
+		background: #faf8f5;
+		scroll-behavior: smooth;
+	}
+
+	:global(body) {
+		margin: 0;
+		background: #faf8f5;
+		color: #39332f;
+		font-family: Georgia, 'Times New Roman', serif;
+	}
+
+	main {
+		overflow: hidden;
+	}
+
+	.hero {
+		min-height: 690px;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 5em 1.5em 7em;
+		background:
+			radial-gradient(
+				ellipse at 50% 45%,
+				rgba(230, 205, 194, 0.25),
+				transparent 65%
+			),
+			#faf8f5;
+	}
+
+	.hero-content {
+		max-width: 760px;
+		margin: 0 auto;
+		animation: appear 1.2s ease both;
+	}
+
+	.eyebrow,
+	.section-label {
+		font-family: Arial, sans-serif;
+		font-size: 0.68rem;
+		letter-spacing: 0.24em;
+		color: #a47c75;
+	}
+
+	.hero h1 {
+		font-size: clamp(3.5rem, 8vw, 6.5rem);
+		line-height: 1.05;
+		font-weight: 400;
+		letter-spacing: -0.065em;
+		margin: 1em 0 0.35em;
+	}
+
+	.hero h1 span,
+	.introduction h2 span,
+	.journal h2 span,
+	.closing h2 span {
+		color: #b77e7d;
+		font-style: italic;
+	}
+
+	.ornament {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1em;
+		color: #bd8582;
+		margin: 2em 0;
+		font-size: 0.9rem;
+	}
+
+	.ornament span {
+		width: 45px;
+		height: 1px;
+		background: #dfc9c0;
+	}
+
+	.intro {
+		max-width: 470px;
+		margin: 0 auto;
+		font-size: 1.1rem;
+		line-height: 1.9;
+		color: #746b65;
+	}
+
+	.welcome {
+		font-size: 0.95rem;
+		font-style: italic;
+		color: #a47c75;
+		margin-top: 2em;
+	}
+
+	.explore-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 1.5em;
+		margin-top: 2em;
+		padding: 1em 1.6em;
+		border: 1px solid #d9bcb4;
+		color: #765650;
+		text-decoration: none;
+		font-family: Arial, sans-serif;
+		font-size: 0.8rem;
+		letter-spacing: 0.04em;
+		transition: all 0.3s ease;
+	}
+
+	.explore-button:hover {
+		background: #b77e7d;
+		color: white;
+		border-color: #b77e7d;
+	}
+
+	.hero-bottom {
+		position: absolute;
+		bottom: 2em;
+		left: 0;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 0 3em;
+		box-sizing: border-box;
+		font-family: Arial, sans-serif;
+		font-size: 0.6rem;
+		letter-spacing: 0.16em;
+		color: #a69a91;
+	}
+
+	.introduction {
+		padding: 7em max(8%, calc((100% - 1050px) / 2));
+		background: #f3eeea;
+	}
+
+	.introduction-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 5em;
+		align-items: center;
+		margin-top: 3em;
+	}
+
+	.introduction h2,
+	.journal h2,
+	.closing h2 {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		line-height: 1.2;
+		font-weight: 400;
+		letter-spacing: -0.055em;
+		margin: 0;
+	}
+
+	.note {
+		font-size: 1rem;
+		line-height: 2;
+		color: #746b65;
+	}
+
+	.signature {
+		font-style: italic;
+		color: #b77e7d;
+		margin-top: 2em;
+	}
+
+	.journal {
+		max-width: 1050px;
+		margin: 0 auto;
+		padding: 8em 2em;
+	}
+
+	.journal-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 2em;
+		margin: 3em 0;
+	}
+
+	.journal h2 {
+		font-size: clamp(2rem, 4vw, 3rem);
+	}
+
+	.journal-heading p {
+		color: #8a8078;
+		font-size: 0.95rem;
+		margin-top: 1em;
+	}
+
+	.view-all {
+		color: #a47c75;
+		font-size: 0.85rem;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.journal-card {
+		padding: 4em 3em;
+		background: #f3eeea;
+		border: 1px solid #eee4dd;
+	}
+
+	.card-number {
+		font-family: Arial, sans-serif;
+		font-size: 0.65rem;
+		letter-spacing: 0.2em;
+		color: #a47c75;
+	}
+
+	.journal-card h3 {
+		font-size: 2rem;
+		font-weight: 400;
+		margin: 1em 0 0.5em;
+	}
+
+	.journal-card p {
+		max-width: 480px;
+		color: #81766e;
+		line-height: 1.8;
+	}
+
+	.journal-card a {
+		display: inline-block;
+		margin-top: 1.5em;
+		color: #a47c75;
+		text-decoration: none;
+		font-size: 0.9rem;
+	}
+
+	.closing {
+		padding: 7em 1.5em;
+		text-align: center;
+		background: #f3eeea;
+	}
+
+	.closing-heart {
+		color: #b77e7d;
+		font-size: 2rem;
+		margin-bottom: 1em;
+	}
+
+	.closing h2 {
+		font-size: clamp(2.8rem, 6vw, 4.5rem);
+	}
+
+	.closing p {
+		color: #8a8078;
+		font-style: italic;
+		margin-top: 1.5em;
+	}
+
+	@keyframes appear {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 700px) {
+		.hero {
+			min-height: 620px;
+			padding: 4em 1.3em 6em;
+		}
+
+		.hero-bottom {
+			padding: 0 1.2em;
+			font-size: 0.5rem;
+		}
+
+		.introduction {
+			padding: 5em 1.5em;
+		}
+
+		.introduction-content {
+			grid-template-columns: 1fr;
+			gap: 2em;
+		}
+
+		.journal {
+			padding: 5em 1.5em;
+		}
+
+		.journal-heading {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 1em;
+		}
+
+		.journal-card {
+			padding: 2.5em 1.5em;
+		}
+
+		.closing {
+			padding: 5em 1.5em;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-content {
+			animation: none;
+		}
+
+		:global(html) {
+			scroll-behavior: auto;
+		}
+	}
+</style>

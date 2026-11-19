@@ -1,3 +1,4 @@
+
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
@@ -10,103 +11,503 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const featuredPost = posts[0];
+const remainingPosts = posts.slice(1);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead title={`The Journal | ${SITE_TITLE}`} description="A collection of thoughts, stories, memories and little moments." />
+		<meta name="theme-color" content="#faf8f5" />
 	</head>
+
 	<body>
 		<Header />
+
 		<main>
-			<section>
-				<ul>
-					{posts.map((post) => (
-						<li>
-							<a href={`/blog/${post.id}/`}>
-								{post.data.heroImage && (
-									<Image width={720} height={360} src={post.data.heroImage} alt="" />
-								)}
-								<h4 class="title">{post.data.title}</h4>
-								<p class="date">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-							</a>
-						</li>
-					))}
-				</ul>
+			<!-- Journal Hero -->
+			<section class="journal-hero">
+				<span class="eyebrow">A COLLECTION OF WORDS & MOMENTS</span>
+
+				<h1>
+					The <span>Journal.</span>
+				</h1>
+
+				<p>
+					Thoughts, stories, little memories, and everything
+					that deserves a page of its own.
+				</p>
+
+				<div class="ornament">
+					<span></span>
+					♡
+					<span></span>
+				</div>
+			</section>
+
+			<!-- Journal Entries -->
+			<section class="entries">
+				<div class="section-heading">
+					<div>
+						<span class="section-label">THE COLLECTION</span>
+						<h2>Words worth keeping.</h2>
+					</div>
+
+					<span class="entry-count">
+						{posts.length} {posts.length === 1 ? 'ENTRY' : 'ENTRIES'}
+					</span>
+				</div>
+
+				{posts.length > 0 ? (
+					<>
+						<!-- Featured Post -->
+						{featuredPost && (
+							<article class="featured">
+								<a href={`/blog/${featuredPost.id}/`} class="featured-link">
+									<div class="featured-image">
+										{featuredPost.data.heroImage ? (
+											<Image
+												src={featuredPost.data.heroImage}
+												alt={featuredPost.data.title}
+												width={1200}
+												height={600}
+												format="webp"
+											/>
+										) : (
+											<div class="image-placeholder">♡</div>
+										)}
+										<span class="featured-label">LATEST ENTRY</span>
+									</div>
+
+									<div class="featured-content">
+										<span class="post-date">
+											<FormattedDate date={featuredPost.data.pubDate} />
+										</span>
+
+										<h3>{featuredPost.data.title}</h3>
+
+										<p>
+											{featuredPost.data.description ||
+												'A little thought, captured in words and kept here.'}
+										</p>
+
+										<span class="read-link">
+											Read this entry <span>↗</span>
+										</span>
+									</div>
+								</a>
+							</article>
+						)}
+
+						<!-- Remaining Posts -->
+						{remainingPosts.length > 0 && (
+							<div class="collection-heading">
+								<span class="section-label">MORE TO DISCOVER</span>
+								<span class="collection-line"></span>
+							</div>
+						)}
+
+						<div class="post-grid">
+							{remainingPosts.map((post, index) => (
+								<article class="post-card">
+									<a href={`/blog/${post.id}/`}>
+										<div class="card-image">
+											{post.data.heroImage ? (
+												<Image
+													src={post.data.heroImage}
+													alt={post.data.title}
+													width={720}
+													height={400}
+													format="webp"
+												/>
+											) : (
+												<div class="image-placeholder">♡</div>
+											)}
+											<span class="card-number">
+												{String(index + 2).padStart(2, '0')}
+											</span>
+										</div>
+
+										<div class="card-content">
+											<span class="post-date">
+												<FormattedDate date={post.data.pubDate} />
+											</span>
+
+											<h3>{post.data.title}</h3>
+
+											<p>
+												{post.data.description ||
+													'A little piece of writing from this universe.'}
+											</p>
+
+											<span class="card-read">Read more ↗</span>
+										</div>
+									</a>
+								</article>
+							))}
+						</div>
+					</>
+				) : (
+					<div class="empty-state">
+						<span class="empty-heart">♡</span>
+						<h3>Every journal begins with a first page.</h3>
+						<p>
+							There are no entries here just yet.
+							Perhaps the first story is waiting to be written.
+						</p>
+					</div>
+				)}
+			</section>
+
+			<!-- Closing Note -->
+			<section class="journal-ending">
+				<span>♡</span>
+				<p>Every little thought deserves somewhere to belong.</p>
 			</section>
 		</main>
+
 		<Footer />
 	</body>
 </html>
+
+<style>
+	:global(html) {
+		background: #faf8f5;
+		scroll-behavior: smooth;
+	}
+
+	:global(body) {
+		margin: 0;
+		background: #faf8f5;
+		color: #514741;
+		font-family: Georgia, 'Times New Roman', serif;
+	}
+
+	main {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 0 2em;
+	}
+
+	.journal-hero {
+		text-align: center;
+		padding: 7em 1em 5em;
+	}
+
+	.eyebrow,
+	.section-label {
+		font-family: Arial, sans-serif;
+		font-size: 0.65rem;
+		letter-spacing: 0.2em;
+		color: #b17e79;
+	}
+
+	.journal-hero h1 {
+		font-size: clamp(4rem, 9vw, 7rem);
+		font-weight: 400;
+		letter-spacing: -0.07em;
+		margin: 0.3em 0;
+		line-height: 1.1;
+	}
+
+	.journal-hero h1 span {
+		color: #b77e7d;
+		font-style: italic;
+	}
+
+	.journal-hero > p {
+		max-width: 460px;
+		margin: 1em auto;
+		color: #82766e;
+		font-size: 1.05rem;
+		line-height: 1.9;
+	}
+
+	.ornament {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1em;
+		color: #bd8582;
+		margin-top: 2em;
+	}
+
+	.ornament span {
+		width: 40px;
+		height: 1px;
+		background: #e2d1c9;
+	}
+
+	.entries {
+		padding: 2em 0 6em;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 1em;
+		margin-bottom: 2.5em;
+	}
+
+	.section-heading h2 {
+		font-size: 2.3rem;
+		font-weight: 400;
+		letter-spacing: -0.05em;
+		margin: 0.5em 0 0;
+	}
+
+	.entry-count {
+		font-family: Arial, sans-serif;
+		font-size: 0.65rem;
+		letter-spacing: 0.15em;
+		color: #a69a91;
+		padding-bottom: 0.5em;
+	}
+
+	.featured {
+		margin-bottom: 5em;
+	}
+
+	.featured-link {
+		display: grid;
+		grid-template-columns: 1.3fr 1fr;
+		gap: 3em;
+		align-items: center;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.featured-image,
+	.card-image {
+		position: relative;
+		overflow: hidden;
+		background: #f0e8e2;
+	}
+
+	.featured-image {
+		aspect-ratio: 2 / 1;
+	}
+
+	.featured-image img,
+	.card-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.6s ease;
+	}
+
+	.featured-link:hover img,
+	.post-card a:hover img {
+		transform: scale(1.04);
+	}
+
+	.featured-label {
+		position: absolute;
+		bottom: 1em;
+		left: 1em;
+		padding: 0.7em 1em;
+		background: #faf8f5;
+		color: #9d706b;
+		font-family: Arial, sans-serif;
+		font-size: 0.6rem;
+		letter-spacing: 0.15em;
+	}
+
+	.featured-content {
+		padding: 1em 0;
+	}
+
+	.post-date {
+		font-family: Arial, sans-serif;
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		color: #a69a91;
+	}
+
+	.featured-content h3 {
+		font-size: clamp(2rem, 4vw, 3rem);
+		line-height: 1.2;
+		font-weight: 400;
+		letter-spacing: -0.04em;
+		margin: 0.5em 0;
+		color: #514741;
+	}
+
+	.featured-content p,
+	.card-content p {
+		font-size: 0.95rem;
+		line-height: 1.8;
+		color: #82766e;
+	}
+
+	.read-link,
+	.card-read {
+		display: inline-block;
+		margin-top: 1em;
+		font-size: 0.85rem;
+		color: #b17e79;
+	}
+
+	.collection-heading {
+		display: flex;
+		align-items: center;
+		gap: 2em;
+		margin-bottom: 2.5em;
+	}
+
+	.collection-line {
+		flex: 1;
+		height: 1px;
+		background: #e9dfd9;
+	}
+
+	.post-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 3.5em 2em;
+	}
+
+	.post-card a {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.card-image {
+		aspect-ratio: 1.8 / 1;
+	}
+
+	.card-number {
+		position: absolute;
+		bottom: 1em;
+		left: 1em;
+		font-family: Arial, sans-serif;
+		font-size: 0.7rem;
+		letter-spacing: 0.1em;
+		color: #765650;
+		background: #faf8f5;
+		padding: 0.5em 0.8em;
+	}
+
+	.card-content {
+		padding-top: 1.2em;
+	}
+
+	.card-content h3 {
+		font-size: 1.7rem;
+		font-weight: 400;
+		letter-spacing: -0.03em;
+		line-height: 1.3;
+		margin: 0.5em 0;
+		transition: color 0.2s ease;
+	}
+
+	.post-card a:hover h3 {
+		color: #b17e79;
+	}
+
+	.image-placeholder {
+		width: 100%;
+		height: 100%;
+		min-height: 180px;
+		display: grid;
+		place-items: center;
+		color: #bd8582;
+		font-size: 3rem;
+		background: linear-gradient(135deg, #f1e9e3, #eadbd3);
+	}
+
+	.empty-state {
+		padding: 6em 1em;
+		text-align: center;
+		background: #f3eeea;
+	}
+
+	.empty-heart {
+		font-size: 2.5rem;
+		color: #b17e79;
+	}
+
+	.empty-state h3 {
+		font-size: 1.8rem;
+		font-weight: 400;
+		margin: 1em 0 0.5em;
+	}
+
+	.empty-state p {
+		max-width: 400px;
+		margin: auto;
+		color: #82766e;
+		line-height: 1.8;
+	}
+
+	.journal-ending {
+		text-align: center;
+		padding: 3em 1em 6em;
+		color: #b17e79;
+	}
+
+	.journal-ending > span {
+		font-size: 2rem;
+	}
+
+	.journal-ending p {
+		font-size: 1rem;
+		font-style: italic;
+		color: #82766e;
+	}
+
+	@media (max-width: 720px) {
+		main {
+			padding: 0 1.2em;
+		}
+
+		.journal-hero {
+			padding: 5em 0 4em;
+		}
+
+		.section-heading h2 {
+			font-size: 1.8rem;
+		}
+
+		.featured-link {
+			grid-template-columns: 1fr;
+			gap: 1em;
+		}
+
+		.featured {
+			margin-bottom: 4em;
+		}
+
+		.featured-content h3 {
+			font-size: 2rem;
+		}
+
+		.post-grid {
+			grid-template-columns: 1fr;
+			gap: 2.5em;
+		}
+
+		.card-content h3 {
+			font-size: 1.5rem;
+		}
+
+		.entry-count {
+			font-size: 0.55rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+
+		.featured-image img,
+		.card-image img {
+			transition: none;
+		}
+	}
+</style>
