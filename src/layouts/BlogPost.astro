@@ -16,179 +16,300 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   <head>
     <BaseHead title={title} description={description} />
 
-    
-<style>
-  body {
-    background: var(--background);
-  }
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  main {
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 1.5rem 3rem 3rem;
-  }
+    <style>
+      :global(*) {
+        box-sizing: border-box;
+      }
 
-  article {
-    width: 100%;
-  }
+      :global(html) {
+        width: 100%;
+        overflow-x: clip;
+        scroll-behavior: smooth;
+      }
 
-  /* Hero image */
+      :global(body) {
+        width: 100%;
+        margin: 0;
+        overflow-x: clip;
+        background: var(--background);
+      }
 
-  .hero-image {
-    width: 100%;
-    margin: 0 auto 1.5rem;
-  }
+      main {
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: clamp(1rem, 3vw, 3rem) clamp(1rem, 4vw, 3rem) 4rem;
+      }
 
-  .hero-image img {
-    display: block;
-    width: 100%;
-    max-height: 520px;
-    object-fit: cover;
-    margin: 0 auto;
-    border-radius: 12px;
-    box-shadow: var(--box-shadow);
-  }
+      article {
+        width: 100%;
+        min-width: 0;
+      }
 
-  /* Article content */
+      /* Hero image */
 
-  .prose {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
-    color: var(--text);
-    font-size: 1.08rem;
-    line-height: 1.85;
-  }
+      .hero-image {
+        width: 100%;
+        margin: 0 auto 2.5rem;
+      }
 
-  /* Article heading */
+      .hero-image :global(img) {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 540px;
+        aspect-ratio: 2 / 1;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 16px;
+        box-shadow: var(--box-shadow);
+      }
 
-  .title {
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
+      /* Article content */
 
-  .date {
-    margin-bottom: 0.8rem;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    letter-spacing: 0.03em;
-  }
+      .prose {
+        width: 100%;
+        max-width: 760px;
+        min-width: 0;
+        margin: 0 auto;
+        color: var(--text);
+        font-size: clamp(1rem, 1.2vw, 1.1rem);
+        line-height: 1.9;
+        overflow-wrap: break-word;
+      }
 
-  .title h1 {
-    max-width: 1100px;
-    margin: 0 auto 0.8rem;
-    color: var(--text-dark);
-    font-family: var(--font-heading);
-    font-size: clamp(2.3rem, 5vw, 3.5rem);
-    font-weight: normal;
-    line-height: 1.25;
-  }
+      /* Heading */
 
-  .title hr {
-    width: 55px;
-    height: 2px;
-    margin: 1.2rem auto 0;
-    border: 0;
-    background: var(--accent-light);
-  }
+      .title {
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
 
-  .last-updated-on {
-    margin-top: 0.25rem;
-    color: var(--text-muted);
-    font-size: 0.82rem;
-    font-style: normal;
-  }
+      .date {
+        margin-bottom: 1rem;
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        letter-spacing: 0.03em;
+      }
 
-  /* Reading typography */
+      .title h1 {
+        max-width: 100%;
+        margin: 0 auto 1rem;
+        color: var(--text-dark);
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 5vw, 3.6rem);
+        font-weight: normal;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+      }
 
-  .prose :global(p) {
-    margin-bottom: 1.3rem;
-  }
+      .title hr {
+        width: 55px;
+        height: 2px;
+        margin: 1.5rem auto 0;
+        border: 0;
+        background: var(--accent-light);
+      }
 
-  .prose :global(h2),
-  .prose :global(h3),
-  .prose :global(h4) {
-    margin-top: 1.8rem;
-    margin-bottom: 0.7rem;
-    color: var(--text-dark);
-    font-family: var(--font-heading);
-    font-weight: normal;
-  }
+      .last-updated-on {
+        margin-top: 0.4rem;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+      }
 
-  .prose :global(a) {
-    color: var(--accent-dark);
-    text-decoration: underline;
-    text-decoration-color: var(--accent-light);
-    text-underline-offset: 4px;
-  }
+      /* Reading typography */
 
-  .prose :global(a:hover) {
-    color: var(--accent);
-  }
+      .prose :global(p) {
+        margin: 0 0 1.4rem;
+      }
 
-  .prose :global(img) {
-    max-width: 100%;
-    margin: 1.5rem auto;
-    border-radius: 12px;
-  }
+      .prose :global(h2),
+      .prose :global(h3),
+      .prose :global(h4) {
+        margin: 2.3rem 0 0.8rem;
+        color: var(--text-dark);
+        font-family: var(--font-heading);
+        font-weight: normal;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+      }
 
-  .prose :global(blockquote) {
-    margin: 1.5rem 0;
-    padding: 0.4rem 0 0.4rem 1.2rem;
-    border-left: 2px solid var(--accent-light);
-    color: var(--text-muted);
-    font-size: 1.1em;
-  }
+      .prose :global(h2) {
+        font-size: clamp(1.55rem, 4vw, 2rem);
+      }
 
-  .prose :global(hr) {
-    margin: 1.5rem 0;
-    background: var(--border);
-  }
+      .prose :global(h3) {
+        font-size: clamp(1.3rem, 3vw, 1.6rem);
+      }
 
-  /* Responsive */
+      .prose :global(a) {
+        color: var(--accent-dark);
+        text-decoration: underline;
+        text-decoration-color: var(--accent-light);
+        text-underline-offset: 4px;
+        overflow-wrap: anywhere;
+      }
 
-  @media (max-width: 900px) {
-    main {
-      padding: 1.2rem 1.5rem 2.5rem;
-    }
+      .prose :global(a:hover) {
+        color: var(--accent);
+      }
 
-    .prose {
-      padding: 0 0.5rem;
-    }
-  }
+      .prose :global(img),
+      .prose :global(video),
+      .prose :global(iframe) {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 1.5rem auto;
+        border-radius: 12px;
+      }
 
-  @media (max-width: 600px) {
-    main {
-      padding: 1rem 0.9rem 2rem;
-    }
+      .prose :global(blockquote) {
+        margin: 1.8rem 0;
+        padding: 0.6rem 0 0.6rem 1.2rem;
+        border-left: 2px solid var(--accent-light);
+        color: var(--text-muted);
+        font-size: 1.05em;
+      }
 
-    .hero-image {
-      margin-bottom: 1.2rem;
-    }
+      .prose :global(ul),
+      .prose :global(ol) {
+        padding-left: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
 
-    .hero-image img {
-      max-height: 280px;
-      border-radius: 9px;
-    }
+      .prose :global(li) {
+        margin-bottom: 0.5rem;
+      }
 
-    .prose {
-      padding: 0;
-      font-size: 1rem;
-      line-height: 1.8;
-    }
+      .prose :global(hr) {
+        margin: 2rem 0;
+        border: 0;
+        border-top: 1px solid var(--border);
+      }
 
-    .title {
-      margin-bottom: 1.2rem;
-    }
+      .prose :global(table) {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        border-collapse: collapse;
+      }
 
-    .title h1 {
-      font-size: 2.2rem;
-    }
-  }
-</style>
+      .prose :global(pre) {
+        max-width: 100%;
+        overflow-x: auto;
+        padding: 1rem;
+        border-radius: 12px;
+      }
 
+      .prose :global(code) {
+        overflow-wrap: anywhere;
+      }
+
+      /* Tablets */
+
+      @media (max-width: 900px) {
+        main {
+          padding: 1.5rem 1.5rem 3rem;
+        }
+
+        .hero-image {
+          margin-bottom: 2rem;
+        }
+
+        .prose {
+          max-width: 700px;
+        }
+      }
+
+      /* Phones */
+
+      @media (max-width: 600px) {
+        main {
+          padding: 1rem 1rem 2.5rem;
+        }
+
+        .hero-image {
+          margin-bottom: 1.8rem;
+        }
+
+        .hero-image :global(img) {
+          aspect-ratio: 4 / 3;
+          max-height: 320px;
+          border-radius: 12px;
+        }
+
+        .prose {
+          width: 100%;
+          padding: 0;
+          font-size: 1rem;
+          line-height: 1.85;
+        }
+
+        .title {
+          margin-bottom: 1.8rem;
+        }
+
+        .title h1 {
+          font-size: clamp(1.9rem, 8vw, 2.5rem);
+          line-height: 1.22;
+        }
+
+        .date {
+          font-size: 0.8rem;
+        }
+
+        .prose :global(p) {
+          margin-bottom: 1.2rem;
+        }
+
+        .prose :global(h2),
+        .prose :global(h3),
+        .prose :global(h4) {
+          margin-top: 1.8rem;
+        }
+
+        .prose :global(blockquote) {
+          margin: 1.3rem 0;
+          padding-left: 0.9rem;
+          font-size: 1rem;
+        }
+      }
+
+      /* Small phones */
+
+      @media (max-width: 380px) {
+        main {
+          padding-right: 0.85rem;
+          padding-left: 0.85rem;
+        }
+
+        .hero-image :global(img) {
+          border-radius: 9px;
+        }
+
+        .title h1 {
+          font-size: 1.85rem;
+        }
+
+        .prose {
+          font-size: 0.96rem;
+        }
+      }
+
+      /* Reduced motion accessibility */
+
+      @media (prefers-reduced-motion: reduce) {
+        :global(html) {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -220,7 +341,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
             </div>
 
             <h1>{title}</h1>
-
             <hr />
           </header>
 

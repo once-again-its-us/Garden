@@ -7,66 +7,99 @@
   .memory {
     --pink: #e99ab5;
     --ink: #765364;
+    --soft-pink: #fff0f5;
+    --card-pink: #fff4f7;
+
+    width: 100%;
+    min-width: 0;
     color: var(--ink);
     font-family: Georgia, serif;
-    line-height: 1.95;
+    font-size: 1rem;
+    line-height: 1.9;
+    overflow-wrap: break-word;
   }
 
+  /* Hero */
+
   .memory :global(.hero) {
-    text-align: center;
-    padding: 3.5rem 1rem;
-    background: linear-gradient(145deg, #fff0f5, #f9edf9, #fff8ed);
+    width: 100%;
+    padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2.5rem);
+    background: linear-gradient(
+      145deg,
+      #fff0f5,
+      #f9edf9,
+      #fff8ed
+    );
     border-radius: 24px;
     margin: 1.5rem 0 2rem;
+    text-align: center;
   }
 
   .memory :global(.eyebrow) {
     letter-spacing: 3px;
-    font-size: .7rem;
+    font-size: 0.7rem;
     color: #bd8299;
     text-transform: uppercase;
   }
 
   .memory :global(.hero h1) {
-    font-size: clamp(2.2rem, 7vw, 4rem);
+    font-size: clamp(2rem, 7vw, 4rem);
     line-height: 1.15;
     color: #a65e7d;
     font-weight: normal;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   .memory :global(.hero p) {
     font-style: italic;
   }
 
+  /* Letter */
+
   .memory :global(.letter) {
+    width: 100%;
     max-width: 680px;
-    margin: auto;
+    margin: 0 auto;
+    min-width: 0;
   }
+
+  /* Decorative divider */
 
   .memory :global(.divider) {
     text-align: center;
     color: #d68ca8;
-    letter-spacing: 8px;
+    letter-spacing: clamp(3px, 2vw, 8px);
     margin: 2.5rem 0;
   }
 
+  /* Highlight */
+
   .memory :global(.highlight) {
-    background: #fff0f5;
+    background: var(--soft-pink);
     padding: 1.2rem 1.5rem;
-    border-left: 3px solid #e99ab5;
+    border-left: 3px solid var(--pink);
     border-radius: 0 14px 14px 0;
     font-style: italic;
-  }
-
-  .memory :global(.memory-card) {
-    background: #fff4f7;
-    padding: 1.5rem;
-    border-radius: 18px;
-    text-align: center;
     margin: 1.5rem 0;
   }
 
+  /* Memory card */
+
+  .memory :global(.memory-card) {
+    width: 100%;
+    background: var(--card-pink);
+    padding: clamp(1rem, 4vw, 1.8rem);
+    border-radius: 18px;
+    text-align: center;
+    margin: 1.5rem 0;
+    overflow-wrap: break-word;
+  }
+
+  /* Reveal */
+
   .memory :global(.reveal) {
+    width: 100%;
     border: 1px solid #efd0dc;
     padding: 1rem 1.2rem;
     border-radius: 14px;
@@ -78,19 +111,27 @@
     cursor: pointer;
     color: #a65e7d;
     font-weight: bold;
+    padding: 0.3rem 0;
   }
+
+  .memory :global(.reveal p) {
+    margin-bottom: 0.8rem;
+  }
+
+  /* Heart button */
 
   .memory :global(.heart-button) {
     display: block;
+    max-width: 100%;
     margin: 1.5rem auto;
     padding: 13px 25px;
     border: none;
     border-radius: 30px;
-    background: #e99ab5;
+    background: var(--pink);
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    transition: transform .2s, background .2s;
+    transition: transform 0.2s, background 0.2s;
   }
 
   .memory :global(.heart-button:hover) {
@@ -98,16 +139,25 @@
     background: #cf7899;
   }
 
+  .memory :global(.heart-button:focus-visible) {
+    outline: 3px solid #a65e7d;
+    outline-offset: 4px;
+  }
+
   .memory :global(.heart-message) {
     text-align: center;
     min-height: 50px;
     color: #a65e7d;
     font-style: italic;
+    padding: 0 0.5rem;
   }
 
+  /* Ending */
+
   .memory :global(.ending) {
+    width: 100%;
     text-align: center;
-    padding: 3rem 1rem;
+    padding: clamp(2rem, 6vw, 3.5rem) 1rem;
     background: linear-gradient(145deg, #fff1f5, #f9edf9);
     border-radius: 24px;
     margin-top: 3rem;
@@ -116,6 +166,7 @@
   .memory :global(.ending h2) {
     color: #a65e7d;
     font-weight: normal;
+    text-wrap: balance;
   }
 
   .memory :global(.signature) {
@@ -124,8 +175,93 @@
   }
 
   .memory :global(.floating-hearts) {
-    font-size: 1.4rem;
-    letter-spacing: 12px;
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    letter-spacing: clamp(4px, 2vw, 12px);
+    overflow-wrap: anywhere;
+  }
+
+  /* Images and media */
+
+  .memory :global(img),
+  .memory :global(video) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 14px;
+    margin: 1.5rem auto;
+  }
+
+  /* Mobile */
+
+  @media (max-width: 600px) {
+    .memory {
+      font-size: 0.96rem;
+      line-height: 1.85;
+    }
+
+    .memory :global(.hero) {
+      padding: 2.5rem 1rem;
+      border-radius: 18px;
+      margin: 1rem 0 1.8rem;
+    }
+
+    .memory :global(.hero h1) {
+      font-size: clamp(1.9rem, 9vw, 2.8rem);
+    }
+
+    .memory :global(.highlight) {
+      padding: 1rem;
+      margin: 1.2rem 0;
+    }
+
+    .memory :global(.memory-card) {
+      padding: 1.2rem 1rem;
+      border-radius: 15px;
+    }
+
+    .memory :global(.reveal) {
+      padding: 0.9rem;
+    }
+
+    .memory :global(.divider) {
+      margin: 2rem 0;
+    }
+
+    .memory :global(.ending) {
+      margin-top: 2rem;
+      border-radius: 18px;
+    }
+
+    .memory :global(.heart-button) {
+      padding: 13px 22px;
+      min-height: 46px;
+    }
+  }
+
+  /* Extra-small screens */
+
+  @media (max-width: 380px) {
+    .memory {
+      font-size: 0.94rem;
+    }
+
+    .memory :global(.hero) {
+      padding: 2rem 0.8rem;
+    }
+
+    .memory :global(.memory-card) {
+      padding: 1rem 0.8rem;
+    }
+
+    .memory :global(.floating-hearts) {
+      letter-spacing: 3px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .memory :global(.heart-button) {
+      transition: none;
+    }
   }
 </style>
 
